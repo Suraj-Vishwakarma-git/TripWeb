@@ -1,0 +1,100 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: #111;
+  color: white;
+  position: sticky;
+  top: 0;
+}
+#int{
+    width: 15vw;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.nav ul {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: white;
+}
+
+.login-btn {
+  padding: 8px 14px;
+  border: none;
+  background: orange;
+  cursor: pointer;
+}
+
+.hamburger {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+.mobile-signup {
+  display: none;
+}
+
+/* 📱 Mobile */
+@media (max-width: 768px) {
+      .mobile-signup {
+    display: block;
+  }
+
+  .signup-mobile {
+    width: 100%;
+    padding: 8px;
+    background: orange;
+    border: none;
+  }
+  .nav {
+    display: none;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background: #222;
+    width: 200px;
+    padding: 20px;
+  }
+
+  .nav ul {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .nav.active {
+    display: block;
+  }
+
+  .login-btn {
+    display: none;
+  }
+   #int{
+    width: 25vw;
+   }
+  .hamburger {
+    display: block;
+  }
+}
+
+#Splace{
+     padding: 8px 14px;
+  border: none;
+  background: rgb(198, 160, 89);
+  cursor: pointer;
+}

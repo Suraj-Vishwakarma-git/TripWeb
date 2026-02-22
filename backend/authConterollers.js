@@ -1,6 +1,7 @@
 import bcrypt, { hash } from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "./User.js";
+import Trip from "./Trip.js";
 
 const generateToken=(id)=>{
     return jwt.sign({id},process.env.JWT_SECRET,{expiresIn:"1h"});
@@ -37,3 +38,20 @@ export const loginUser=async (req,res)=>{
         res.status(401).json({message:"Invalid Credentials"});
     }
 };
+
+export const tripD=async (req,res)=>{
+    const data=await Trip.find();
+    res.json(data);
+}
+
+export const search=async (req,res)=>{
+   try{ 
+    const data=req.query.search || "";
+    const trip=await Trip.find({
+        title:{$regex:data,$options:"i"}
+    });
+    res.json(trip);}
+  catch(e){
+    res.status(500).json({message:"Server Error"})
+  }
+}
