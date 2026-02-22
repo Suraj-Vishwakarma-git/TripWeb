@@ -12,7 +12,11 @@ const Login = () => {
             body:JSON.stringify({email:email,password:password})
         });
         const data=await api.json();
-        alert(data.message);
+        if(api.ok){
+          localStorage.setItem("token",data.token);
+          alert(data.message);
+        }
+        
        }
   return (
    <div id='mainB'>

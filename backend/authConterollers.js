@@ -2,7 +2,7 @@ import bcrypt, { hash } from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "./User.js";
 import Trip from "./Trip.js";
-
+import Booking from "./Booking.js";
 const generateToken=(id)=>{
     return jwt.sign({id},process.env.JWT_SECRET,{expiresIn:"1h"});
 };
@@ -53,5 +53,25 @@ export const search=async (req,res)=>{
     res.json(trip);}
   catch(e){
     res.status(500).json({message:"Server Error"})
+  }
+}
+
+export const booking=async (req,res)=>{
+   try{ const {id}=req.body;
+    const tri=await Trip.findById(id);
+    if(!tri) {
+        return res.status(404).json({message:"Trip Not Found"});
+    }
+    const data=await Booking.create({
+            userBid:req.userId,
+            tripId:tri._id,
+            title:tri.title,
+            image:tri.image,
+            price:tri.ticketPrice
+    });
+    res.json({message:"Ticket Booked Successfully"});
+}
+catch(e){
+    res.status(500).json({message:"Server Error"});
   }
 }

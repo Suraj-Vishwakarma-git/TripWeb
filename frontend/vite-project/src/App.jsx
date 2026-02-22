@@ -12,18 +12,20 @@ import { useState } from "react";
 
 function App() {
  const [searchI,setsearchI]=useState("");
+ const [binfo,setbinfo]=useState(null);
+
 
   return (
     <Router>
       <Header searchI={searchI} setsearchI={setsearchI} />
 
       <Routes>
-        <Route path="/" element={<Home/>} />
+        <Route path="/" element={<Home setbinfo={setbinfo}  />} />
         <Route path="/places" element={<Places/>} />
-        <Route path="/bookings" element={<Booking/>} />
         <Route path="/Signup" element={<Signup/>} />
         <Route path="/login" element={<Login/>}/>
-        <Route path="/search" element={<Search searchI={searchI}/>}/>
+        <Route path="/booking" element={<Booking  binfo={binfo} />}/>
+        <Route path="/search" element={<Search searchI={searchI} setbinfo={setbinfo} />}/>
       </Routes>
     </Router>
   );

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import "./home.css";
-
-const Home = () => {
+import { Link } from 'react-router-dom';
+import Booking from './Booking.jsx';
+const Home = ({setbinfo}) => {
   const [products,setproducts]=useState([]);
   useEffect(()=>{
     async function fetchdata(){
@@ -11,6 +12,7 @@ const Home = () => {
     }
     fetchdata();
   },[]);
+
   return (
     <div id='products'>
      {products.map((e,index)=>(
@@ -18,7 +20,7 @@ const Home = () => {
         <img src={e.image} alt={e.title} id='img'/>
         <h3 className='product-title'>{e.title}</h3>
         <p className='product-price'>${e.ticketPrice}</p>
-        <button className='order-btn'>Order Now</button>
+      <Link to="/booking" ><button className='order-btn' onClick={()=>setbinfo(e)} >Order Now</button></Link> 
         </div>
      ))}
     </div>

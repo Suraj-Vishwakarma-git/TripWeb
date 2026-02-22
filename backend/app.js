@@ -11,7 +11,9 @@ server.get("/",(req,res)=>{
     res.send("TripNest API running");
 });
 
+
 server.use("/api/auth",authRoutes);
+
 
 export default server;
 

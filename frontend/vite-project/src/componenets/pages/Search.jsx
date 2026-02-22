@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 
-const Search = ({searchI}) => {
+const Search = ({searchI,setbinfo}) => {
     const [result,setresult]=useState([]);
 
     useEffect(()=>{
@@ -21,7 +22,7 @@ const Search = ({searchI}) => {
         <img src={e.image} alt={e.title} id='img'/>
         <h3 className='product-title'>{e.title}</h3>
         <p className='product-price'>${e.ticketPrice}</p>
-        <button className='order-btn'>Order Now</button>
+      <Link to="/Booking"> <button className='order-btn' onClick={()=>setbinfo(e)}>Order Now</button></Link> 
         </div>
      ))}
     </div>
