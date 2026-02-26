@@ -23,12 +23,12 @@ const Header = ({searchI,setsearchI}) => {
       <button id="Splace" onClick={handleSearch}>Search</button></div>
         <nav className={isopen? "nav active":"nav"}>
             <ul>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/Places">Places</Link></li>
-                <li><Link to="/booking">booking</Link></li>
-                <li><Link to="/contact">contact</Link></li>
+                <li><Link to="/" onClick={toggle} >Home</Link></li>
+                <li><Link to="/Places"onClick={toggle} >Places</Link></li>
+                <li><Link to="/booking" onClick={toggle}>booking</Link></li>
+                <li><Link to="/contact" onClick={toggle}>contact</Link></li>
                 <li className="mobile-signup">
-              <Link to="/signup">  <button className="signup-mobile">Signup</button></Link>
+              <Link to="/signup" onClick={toggle}>  <button className="signup-mobile">Signup</button></Link>
                 </li>
             </ul>
         </nav>
