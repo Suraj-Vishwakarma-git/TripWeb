@@ -3,8 +3,8 @@ import { useState } from 'react';
 
 const Login = () => {
 
-    const [email,setemail]=useState("");
-        const [password,setpassword]=useState("");
+       const [email,setemail]=useState("");
+       const [password,setpassword]=useState("");
        async function login(){
         const api=await fetch("http://localhost:5000/api/auth/login",{
             method:"POST",
