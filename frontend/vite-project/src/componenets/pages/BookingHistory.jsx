@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom'
 
 const BookingHistory = () => {
     const [his,sethis]=useState([]);
+    const [selectedId,setselectedId]=useState(null);
+    const [newDate,setnewDate]=useState("");
 
     useEffect(()=>{
       const fetchhistory=async()=>{
@@ -29,8 +31,47 @@ const BookingHistory = () => {
        
   }
 
-    if(!his){
+    if(his==null){
       return <h1>Loading...</h1>
+    }
+
+
+    function handleReschedule(id) {
+       setselectedId(id);
+      }
+
+async function Delete(id){
+   const tokenn=localStorage.getItem("token");
+  const API=await fetch("http://localhost:5000/api/auth/deleteticket",{
+    method:"DELETE",
+    headers:{
+      "Content-Type":"application/json",
+      "Authorization":"Bearer "+tokenn
+    },
+    body:JSON.stringify({Tid:id})
+  });
+  const data=await API.json();
+  alert(data.message);
+  sethis(his.filter(item => item._id !== id));
+}
+
+
+ async function confirmReschedule(id){
+      const tokenn=localStorage.getItem("token");
+      const API=await fetch("http://localhost:5000/api/auth/updatetickets",{
+        method:"PUT",
+        headers:{
+          "Content-Type":"application/json",
+          "Authorization":"Bearer "+tokenn
+        },
+        body:JSON.stringify({Tid:id,newDates:newDate})
+      });
+      const data=await API.json();
+      alert(data.message);
+      sethis(his.map((item)=>
+      item._id===id?{...item,date:newDate}:item));
+      setselectedId(null);
+      setnewDate("");
     }
 
   return (
@@ -58,6 +99,19 @@ const BookingHistory = () => {
           })}
         </p>
         <p><strong>From:</strong> {e.country}</p>
+       <div className="btn">
+        <button id="reS" onClick={()=>handleReschedule(e._id)} style={{margin:"10px"}}>Reschedule</button>
+        <button id='delete' onClick={()=>Delete(e._id)} >Delete Ticket</button>
+        </div>
+        {selectedId===e._id && (
+          <div>
+            <input type='date' value={newDate} onChange={(e)=>setnewDate(e.target.value)}/>
+            <button onClick={()=>confirmReschedule(e._id)}>Confirm</button>
+           
+          </div>
+        )
+        }
+      <div style={{width:"100%",display:"flex",flexDirection:"column",alignItems:"center"}}>  <div className="logo" style={{margin:"10px"}}><span>Travel</span><span style={{color:"red"}}>X</span></div></div>
       </div>
     </div>
   ))

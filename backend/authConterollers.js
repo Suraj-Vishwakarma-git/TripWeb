@@ -22,7 +22,7 @@ export const registerUser =async (req,res)=>{
     });
     res.status(201).json({message:"Account Created Successfully",Account:user});}
     catch(e){
-        res.json(500).json({message:"Server Error"});
+        res.status(500).json({message:"Server Error"});
     }
 };
 
@@ -31,7 +31,7 @@ export const loginUser=async (req,res)=>{
     const user=await User.findOne({email});
     
     if(!user){
-         res.json({message:"Account Not Exist"});
+       return  res.json({message:"Account Not Exist"});
     }
 
     const passawait =await bcrypt.compare(password,user.password);
@@ -91,6 +91,20 @@ export const booking=async (req,res)=>{
 catch(e){
     res.status(500).json({message:"Server Error"});
   }
+}
+
+export const changeDate=async (req,res)=>{
+    const {Tid,newDates}=req.body;
+    const Updatedticket=await Booking.findOneAndUpdate({_id:Tid,userBid:req.userId},{date:newDates},{new:true});
+    if(!Updatedticket) res.json({message:"Ticket Not Found"});
+    res.json({message:"Dates Updated Successfully"});
+}
+
+export const deleteTickets=async (req,res)=>{
+    const {Tid}=req.body;
+    const DeleteTicket=await Booking.findOneAndDelete({_id:Tid,userBid:req.userId});
+    if(!DeleteTicket) res.json({message:"Ticket Not Found"});
+    res.json({message:"Ticket Deleted Successfully"});
 }
 
 export const bookinghis=async (req,res)=>{

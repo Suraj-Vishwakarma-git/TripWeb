@@ -76,7 +76,7 @@ const Booking = () => {
       <div className='product-card' key={binfo._id}>
         <img src={binfo.image} alt={binfo.title} id='img'/>
         <h3 className='product-title'>{binfo.title}</h3>
-        <p className='product-price'>${binfo.ticketPrice}</p>
+        <p className='product-price'>₹{binfo.ticketPrice}</p>
       
         <input type='date' value={seledate} onChange={(e)=>setseledate(e.target.value)} min={new Date().toISOString().split("T")[0]}></input>
         <select value={selectedcountry} onChange={(e)=>setselectedcountry(e.target.value)} required id='selectC'>

@@ -21,7 +21,7 @@ const Search = ({searchI}) => {
       <div className='product-card' key={e._id}>
         <img src={e.image} alt={e.title} id='img'/>
         <h3 className='product-title'>{e.title}</h3>
-        <p className='product-price'>${e.ticketPrice}</p>
+        <p className='product-price'>₹{e.ticketPrice}</p>
       <Link to={`/booking/${e._id}`}  > <button className='order-btn' >Order Now</button></Link> 
         </div>
      ))}
