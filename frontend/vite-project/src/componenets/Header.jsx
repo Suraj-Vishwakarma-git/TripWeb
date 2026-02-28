@@ -40,8 +40,8 @@ const islogein = !!token;
         <nav className={isopen? "nav active":"nav"}>
             <ul>
                 <li><Link to="/" onClick={toggle} >Home</Link></li>
-                <li><Link to="/Places"onClick={toggle} >Places</Link></li>
-                <li><Link to="/booking" onClick={toggle}>booking</Link></li>
+                <li><Link to="/bookinghistory"onClick={toggle} >MyBooking</Link></li>
+                {/* <li><Link to="/booking" onClick={toggle}>MyBooking</Link></li> */}
                 <li><Link to="/contact" onClick={toggle}>contact</Link></li>
                 <li className="mobile-signup">
               {

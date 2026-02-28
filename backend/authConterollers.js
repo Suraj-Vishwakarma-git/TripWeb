@@ -44,6 +44,12 @@ export const tripD=async (req,res)=>{
     res.json(data);
 }
 
+export const tripdd=async (req,res)=>{
+    const data=await Trip.findById(req.params.id);
+    res.json(data);
+}
+
+
 export const search=async (req,res)=>{
    try{ 
     const data=req.query.search || "";
@@ -57,7 +63,7 @@ export const search=async (req,res)=>{
 }
 
 export const booking=async (req,res)=>{
-   try{ const {id}=req.body;
+   try{ const {id,country,date}=req.body;
     const tri=await Trip.findById(id);
     if(!tri) {
         return res.status(404).json({message:"Trip Not Found"});
@@ -67,11 +73,21 @@ export const booking=async (req,res)=>{
             tripId:tri._id,
             title:tri.title,
             image:tri.image,
-            price:tri.ticketPrice
+            price:tri.ticketPrice,
+            country:country,
+            date:date
     });
     res.json({message:"Ticket Booked Successfully"});
 }
 catch(e){
     res.status(500).json({message:"Server Error"});
   }
+}
+
+export const bookinghis=async (req,res)=>{
+    const bookh=await Booking.find({userBid:req.userId});
+    if(!bookh){
+        return res.json({message:"Book Tickets..."})
+    };
+    res.json({bookh});
 }

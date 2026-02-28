@@ -1,10 +1,11 @@
 import React from 'react'
 import "./Booking.css";
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
+import { useEffect } from 'react';
 
-const Booking = ({binfo}) => {
+const Booking = () => {
   const navigate = useNavigate();
   const countries = [
   "India",
@@ -29,15 +30,34 @@ const Booking = ({binfo}) => {
   "Singapore"
 ];
 
- const [selectedcountry,setselectedcountry]=useState("");
+  const {id}=useParams();
+  const [binfo, setBinfo] = useState(null);
 
-  async function book(){
+ const [selectedcountry,setselectedcountry]=useState("");
+ const [seledate,setseledate]=useState("");
+
+
+  useEffect(()=>{
+    async function fetchTrip(){
+      const res=await fetch(`http://localhost:5000/api/auth/tripdd/${id}`);
+      const dd=await res.json();
+      setBinfo(dd);
+    }
+    fetchTrip();
+  },[id]);
+
+  if (!binfo) {
+    return <h2>Loading...</h2>;
+  }
+
+   
+  async function book(e){
      e.preventDefault(); 
     const token = localStorage.getItem("token");
      const API=await fetch("http://localhost:5000/api/auth/booking",{
       method:"POST",
       headers:{"Content-Type":"application/json","Authorization":"Bearer "+token},
-      body:JSON.stringify({id:binfo._id})
+      body:JSON.stringify({id:binfo._id, country:selectedcountry,date:seledate})
     });
        if(API.status===401){
       alert("Please Login First");
@@ -58,7 +78,8 @@ const Booking = ({binfo}) => {
         <h3 className='product-title'>{binfo.title}</h3>
         <p className='product-price'>${binfo.ticketPrice}</p>
       
-        <select value={selectedcountry} onChange={(e)=>setselectedcountry(e.target.value)} required>
+        <input type='date' value={seledate} onChange={(e)=>setseledate(e.target.value)} min={new Date().toISOString().split("T")[0]}></input>
+        <select value={selectedcountry} onChange={(e)=>setselectedcountry(e.target.value)} required id='selectC'>
           <option value="">Select Country</option>
           {
             countries.map((e)=>(
