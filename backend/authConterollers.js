@@ -29,7 +29,16 @@ export const registerUser =async (req,res)=>{
 export const loginUser=async (req,res)=>{
     const {email,password}=req.body;
     const user=await User.findOne({email});
-    if(user && (await bcrypt.compare(password,user.password))){
+    
+    if(!user){
+         res.json({message:"Account Not Exist"});
+    }
+
+    const passawait =await bcrypt.compare(password,user.password);
+    if(!passawait){
+        res.json({message:"Invalid Password"});
+    }
+    if(user && (passawait)){
         res.json({
             message:"LogedIn Successfully",
             token:generateToken(user._id)

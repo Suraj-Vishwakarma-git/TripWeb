@@ -1,8 +1,10 @@
 import React from 'react'
 import { useState } from 'react';
+import { Link ,useNavigate} from 'react-router-dom';
 
 const Login = () => {
 
+       const navigate=useNavigate();
        const [email,setemail]=useState("");
        const [password,setpassword]=useState("");
        async function login(){
@@ -15,6 +17,7 @@ const Login = () => {
         if(api.ok){
           localStorage.setItem("token",data.token);
           alert(data.message);
+          navigate("/");
         }
         
        }
