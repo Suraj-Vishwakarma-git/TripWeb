@@ -6,7 +6,7 @@ const Home = () => {
   const [products,setproducts]=useState([]);
   useEffect(()=>{
     async function fetchdata(){
-      const res=await fetch("https://tripweb-xmwf.onrender.com/api/auth/tripd");
+      const res=await fetch("https://tripweb-3t2m.onrender.com/api/auth/tripd");
       const data=await res.json();
       setproducts(data);
     }

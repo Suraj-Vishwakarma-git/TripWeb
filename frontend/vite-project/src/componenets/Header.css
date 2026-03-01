@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+body {
+  padding-top: 20px;
+}
+
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -13,14 +18,16 @@
   color: white;
   position: sticky;
   top: 0;
-}
-#int{
-    width: 15vw;
+  z-index: 1000;
 }
 
 .logo {
   font-size: 22px;
   font-weight: bold;
+}
+
+#int {
+  width: 120px;
 }
 
 .nav ul {
@@ -41,19 +48,46 @@
   cursor: pointer;
 }
 
+#Splace {
+  padding: 8px 14px;
+  border: none;
+  background: rgb(198, 160, 89);
+  cursor: pointer;
+}
+
+.desktop-auth {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
 .hamburger {
   display: none;
   font-size: 24px;
   cursor: pointer;
 }
+
 .mobile-signup {
   display: none;
 }
 
-/* 📱 Mobile */
+
 @media (max-width: 768px) {
-      .mobile-signup {
+
+  .header {
+    padding: 12px 20px;
+  }
+
+  #DBook {
+    display: none;
+  }
+
+  .mobile-signup {
     display: block;
+  }
+
+  .desktop-auth {
+    display: none;
   }
 
   .signup-mobile {
@@ -62,14 +96,18 @@
     background: orange;
     border: none;
   }
+
+  /* Mobile Nav */
   .nav {
     display: none;
-    position: absolute;
+    position: fixed;
     top: 70px;
     right: 0;
+    height: 100vh;
+    width: 220px;
     background: #222;
-    width: 200px;
     padding: 20px;
+    transition: all 0.3s ease;
   }
 
   .nav ul {
@@ -84,17 +122,18 @@
   .login-btn {
     display: none;
   }
-   #int{
-    width: 25vw;
-   }
+
+  #int {
+    width: 140px;
+  }
+
   .hamburger {
     display: block;
   }
 }
 
-#Splace{
-     padding: 8px 14px;
-  border: none;
-  background: rgb(198, 160, 89);
-  cursor: pointer;
+@media (min-width: 770px) {
+  #DBook {
+    font-size: 13px;
+  }
 }

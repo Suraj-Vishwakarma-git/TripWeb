@@ -39,7 +39,7 @@ const Booking = () => {
 
   useEffect(()=>{
     async function fetchTrip(){
-      const res=await fetch(`http://localhost:5000/api/auth/tripdd/${id}`);
+      const res=await fetch(`https://tripweb-3t2m.onrender.com/api/auth/tripdd/${id}`);
       const dd=await res.json();
       setBinfo(dd);
     }
@@ -54,7 +54,7 @@ const Booking = () => {
   async function book(e){
      e.preventDefault(); 
     const token = localStorage.getItem("token");
-     const API=await fetch("https://tripweb-xmwf.onrender.com/api/auth/booking",{
+     const API=await fetch("https://tripweb-3t2m.onrender.com/api/auth/booking",{
       method:"POST",
       headers:{"Content-Type":"application/json","Authorization":"Bearer "+token},
       body:JSON.stringify({id:binfo._id, country:selectedcountry,date:seledate})

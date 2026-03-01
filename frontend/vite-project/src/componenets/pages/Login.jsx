@@ -8,7 +8,7 @@ const Login = () => {
        const [email,setemail]=useState("");
        const [password,setpassword]=useState("");
        async function login(){
-        const api=await fetch("http://localhost:5000/api/auth/login",{
+        const api=await fetch("https://tripweb-3t2m.onrender.com/api/auth/login",{
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify({email:email,password:password})

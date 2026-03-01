@@ -6,7 +6,7 @@ const Search = ({searchI}) => {
 
     useEffect(()=>{
         async function Fetch(){
-            const api=await fetch(`https://tripweb-xmwf.onrender.com/api/auth/search?search=${searchI}`);
+            const api=await fetch(`https://tripweb-3t2m.onrender.com/api/auth/search?search=${searchI}`);
             const data=await api.json();
             setresult(data);
        }

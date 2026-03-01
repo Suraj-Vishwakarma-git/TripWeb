@@ -1,18 +1,18 @@
-.box{
+.box {
     margin-top: 20px;
+    padding: 0 15px;         
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
-
 }
 
-#selectC{
+#selectC {
     margin: 10px;
-    height: 25px;
+    width: 100%;              
+    max-width: 250px;        
+    height: 35px;             
     border: none;
     border-radius: 10px;
     text-align: center;
 }
-
-

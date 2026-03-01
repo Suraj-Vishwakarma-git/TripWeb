@@ -12,7 +12,7 @@ const BookingHistory = () => {
     useEffect(()=>{
       const fetchhistory=async()=>{
         const token=localStorage.getItem("token");
-     const API=await fetch("https://tripweb-xmwf.onrender.com/api/auth/bookinghistory",{
+     const API=await fetch("https://tripweb-3t2m.onrender.com/api/auth/bookinghistory",{
        method:"POST",
         headers:{Authorization:`Bearer ${token}`}
      });
@@ -42,7 +42,7 @@ const BookingHistory = () => {
 
 async function Delete(id){
    const tokenn=localStorage.getItem("token");
-  const API=await fetch("https://tripweb-xmwf.onrender.com/api/auth/deleteticket",{
+  const API=await fetch("https://tripweb-3t2m.onrender.com/api/auth/deleteticket",{
     method:"DELETE",
     headers:{
       "Content-Type":"application/json",
@@ -58,7 +58,7 @@ async function Delete(id){
 
  async function confirmReschedule(id){
       const tokenn=localStorage.getItem("token");
-      const API=await fetch("https://tripweb-xmwf.onrender.com/api/auth/updatetickets",{
+      const API=await fetch("https://tripweb-3t2m.onrender.com/api/auth/updatetickets",{
         method:"PUT",
         headers:{
           "Content-Type":"application/json",
