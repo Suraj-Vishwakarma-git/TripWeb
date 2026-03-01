@@ -41,8 +41,6 @@ const islogein = !!token;
             <ul>
                 <li><Link to="/" onClick={toggle} >Home</Link></li>
                 <li><Link to="/bookinghistory"onClick={toggle} >MyBooking</Link></li>
-                {/* <li><Link to="/booking" onClick={toggle}>MyBooking</Link></li> */}
-                <li><Link to="/contact" onClick={toggle}>contact</Link></li>
                 <li className="mobile-signup">
               {
                 islogein?(<button className="signup-mobile" onClick={handlelogout}>Logout</button>):( <Link to="/signup" onClick={toggle}>  <button className="signup-mobile">Signup</button></Link>)
