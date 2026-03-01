@@ -35,8 +35,8 @@ const islogein = !!token;
     <>
     <div className="header">
         <div className="logo"><span>Travel</span><span style={{color:"red"}}>X</span></div>
-      <div className="sgroup"><input type="text" id="int" placeholder="Search Places" value={searchI} onChange={(e)=>setsearchI(e.target.value)}/>
-      <button id="Splace" onClick={handleSearch}>Search</button></div>
+      <div className="sgroup"><input type="text" id="int" placeholder="Search Places" value={searchI} onChange={(e)=>setsearchI(e.target.value)} style={{width:"70px",borderRadius:"5px",fontSize:"10px"}}/>
+      <button id="Splace" onClick={handleSearch} style={{width:"60px",fontSize:"12px",height:"35px"}}>Search</button></div>
         <nav className={isopen? "nav active":"nav"}>
             <ul>
                 <li><Link to="/" onClick={toggle} >Home</Link></li>
