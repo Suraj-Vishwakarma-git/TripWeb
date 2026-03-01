@@ -54,7 +54,7 @@ const Booking = () => {
   async function book(e){
      e.preventDefault(); 
     const token = localStorage.getItem("token");
-     const API=await fetch("http://localhost:5000/api/auth/booking",{
+     const API=await fetch("https://tripweb-xmwf.onrender.com/api/auth/booking",{
       method:"POST",
       headers:{"Content-Type":"application/json","Authorization":"Bearer "+token},
       body:JSON.stringify({id:binfo._id, country:selectedcountry,date:seledate})

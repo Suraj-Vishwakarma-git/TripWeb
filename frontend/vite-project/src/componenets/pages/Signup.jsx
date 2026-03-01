@@ -8,7 +8,7 @@ const Signup = () => {
     const [email,setemail]=useState("");
     const [password,setpassword]=useState("");
    async function signup(){
-    const api=await fetch("http://localhost:5000/api/auth/register",{
+    const api=await fetch("https://tripweb-xmwf.onrender.com/api/auth/register",{
         method:"POST",
         headers:{"Content-Type":"application/json"},
         body:JSON.stringify({name:name,email:email,password:password})
